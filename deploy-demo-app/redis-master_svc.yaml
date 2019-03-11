@@ -1,5 +1,3 @@
-# redis master service
-
 apiVersion: v1
 kind: Service
 metadata:
