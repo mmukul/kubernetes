@@ -1,0 +1,16 @@
+# Frontend app Service
+
+apiVersion: v1
+kind: Service
+metadata:
+   name: frontend-svc
+   labels:
+      app: guestbook
+      tier: frontend
+spec:
+   selector:
+      app: guestbook
+      tier: frontend
+   type: NodePort
+   ports:
+    - port: 80

@@ -1,0 +1,24 @@
+- hosts: kubemaster
+  gather_facts: false
+  
+  vars:
+
+      kubepod: kubectl get pods --all-namespaces |awk '{print $2" "$3" "$4}'| column -t
+      kubenode: kubectl describe nodes | grep -Ei 'architecture|OS Image|Allocated resources'| sort |uniq
+      
+  tasks:
+
+    - name: Get pod details
+      #shell: "{{ kubepod }} > pod_details"
+      shell: "{{ item }}"
+      with_items:
+            - "{{ kubepod }} > pod_details"
+            - "{{ kubenode }} >> pod_details"
+      register: pod
+    
+    - debug:
+        var: pod.stdout_lines
+      run_once: true
+
+
+    #- local_action: copy content={{ pod }} dest=/root/pod_details
