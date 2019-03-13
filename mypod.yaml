@@ -1,0 +1,15 @@
+apiVersion: v1          # for versions before 1.9.0 use apps/v1beta2
+kind: Pod
+metadata:
+  name: mypod
+  labels:
+    app: demo
+    env: test 
+spec:
+    containers:
+      - name: nginx
+        image: nginx
+        ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
