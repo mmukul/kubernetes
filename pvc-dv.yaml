@@ -1,0 +1,14 @@
+
+# Persistent Volume Claim - Dynamic
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: my-disk-claim-1
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: fast

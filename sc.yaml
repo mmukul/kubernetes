@@ -1,0 +1,10 @@
+#StorageClass
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: fast
+#provisioner: kubernetes.io/gce-pd
+provisioner: kubernetes.io/awsebs-pd
+parameters:
+   type: pd-ssd

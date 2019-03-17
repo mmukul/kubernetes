@@ -2,8 +2,8 @@ apiVersion: apps/v1     # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: nginx-deploy
-  #labels:
-   # app: nginx-app
+  labels:
+    app: nginx-app
 spec:
   replicas: 1           # tells deployment to run 2 pods matching the template
   selector:
@@ -19,3 +19,10 @@ spec:
         image: nginx:1.7.9
         ports:
         - containerPort: 80
+        volumeMounts:
+          - mountPath: /test-pd
+            name: test-volume
+      volumes:
+       - name: test-volume
+         persistentVolumeClaim:
+            claimName: pvc-local-1

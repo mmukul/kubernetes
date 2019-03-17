@@ -1,3 +1,6 @@
+
+#PersistentStaticVolume
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -9,6 +12,6 @@ spec:
      - ReadWriteOnce  
    storageClassName: slow
    #gcePersistentDisk:
-   #awsElasticBlockStore:
+   awsElasticBlockStore:
       pdName: my-data-disk
       fsType: ext4
