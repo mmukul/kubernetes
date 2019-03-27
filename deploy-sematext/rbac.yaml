@@ -1,0 +1,53 @@
+
+# Add ClusterRole and ClusterRoleBindings
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sematext-agent
+  labels:
+    app: sematext-agent
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: sematext-agent
+subjects:
+- kind: ServiceAccount
+  name: sematext-agent
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: sematext-agent
+  labels:
+    app: sematext-agent
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - events
+  - pods
+  - configmaps
+  - nodes
+  - secrets
+  verbs:
+  - list
+  - get
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - configmaps
+  verbs:
+  - create
+  - delete
+  - update
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - watch
+  - list

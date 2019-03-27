@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+ name: sematext-agent
+spec:
+ selector:
+   matchLabels:
+     app: sematext-agent
+ template:
+   metadata:
+     labels:
+       app: sematext-agent
+   spec:
+     hostNetwork: true
+     dnsPolicy: "ClusterFirst"
+     restartPolicy: "Always"
+     containers:
+     - name: sematext-agent
+       image: sematext/spm-client:latest
+       imagePullPolicy: "Always"
+       env:
+       - name: LOGS_TOKEN
+         value: "64942cc5-11c6-4af4-9e01-b607b8b39d60"
+       volumeMounts:
+         - mountPath: /var/run/docker.sock
+           name: docker-sock
+         - mountPath: /etc/localtime
+           name: localtime
+       securityContext:
+          privileged: true
+       ports:
+         - name: http
+           containerPort: 80
+           protocol: TCP
+     volumes:
+       - name: docker-sock
+         hostPath:
+           path: /var/run/docker.sock
+       - name: localtime
+         hostPath:
+           path: /etc/localtime
