@@ -1,0 +1,10 @@
+apiVersion: extensions/vibeta1
+kind: Ingress
+metadata:
+   name: nginx-ingress
+   #annotations:
+      #kubernetes.io/ingress.global-static-ip-name:
+spec:
+  backend:
+    serviveName: nginx
+    servicePort: 80     #nodePort - 80:31117
