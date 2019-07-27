@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hpa-deploy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hpa-deploy
+    spec:
+      containers:
+      - name: hpa-pod
+        image: nginx
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        resources:
+            limits:
+              cpu: "0.5"
+            requests:
+              cpu: "0.25"

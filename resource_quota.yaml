@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: nsquota
+spec:
+  hard:
+    requests.cpu: 100m
+    requests.memory: 100Mib
+    limits.cpu: 200m
+    limits.memory: 200Mib 

@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hpa-svc
+  labels:
+    app: hpa-deploy
+spec:
+  selector:
+    app: hpa-deploy
+  ports:
+  - port: 3000
+    protocol: TCP
+    nodePort: 30001
+  type: LoadBalancer
