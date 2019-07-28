@@ -40,6 +40,10 @@ kind: Ingress
 metadata:
   name: nginx-ingress
 spec:
+  tls:
+    - secretName: kube-master1-demo-com-tls
+      hosts: 
+        - kube-master1.demo.com
   rules:
   - host: kube-master1.demo.com
     http:
