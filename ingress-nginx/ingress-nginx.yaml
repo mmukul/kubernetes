@@ -1,5 +1,5 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: extensions/v1
 kind: Deployment
 metadata:
   labels:
@@ -29,7 +29,7 @@ spec:
   - port: 80
     protocol: TCP
     targetPort: 8080
-  type: NodePort
+  #type: NodePort
   selector:
     app: nginx-svc
 

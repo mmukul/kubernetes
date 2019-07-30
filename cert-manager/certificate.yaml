@@ -1,0 +1,12 @@
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: kube-master1.demo.com
+  namespace: cert-manager
+spec:
+  secretName: kube-master1-demo-com-tls
+  issuerRef:
+    name: ca-issuer
+    kind: issuer
+  commonName: kube-master1

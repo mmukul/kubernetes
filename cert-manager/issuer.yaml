@@ -1,0 +1,11 @@
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Issuer
+metadata:
+  name: ca-issuer
+  namespace: cert-manager
+spec:
+  tls:
+  #- hosts:
+   #  - example.com
+    secretName: ca-key-pair
